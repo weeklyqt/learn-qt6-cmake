@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/resource">
+        <file>assets/github.png</file>
+    </qresource>
+</RCC>

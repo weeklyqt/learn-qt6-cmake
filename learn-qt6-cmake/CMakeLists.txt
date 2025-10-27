@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.16)
+
+project(LearnQt6CMake LANGUAGES CXX)
+
+add_subdirectory(BuildConsoleApp)
+add_subdirectory(BuildQuickApp)
+add_subdirectory(BuildWidgetApp)
+add_subdirectory(BuildWidgetAppAndDeploy)
+add_subdirectory(BuildWidgetAppWithLib)
+add_subdirectory(BuildWidgetAppWithQRCResource)
+add_subdirectory(BuildWidgetAppWithResource)
+add_subdirectory(BuildWidgetAppWithSubDir)
+add_subdirectory(BuildWidgetAppWithTranslations)
+add_subdirectory(BuildQuickAppAndDeploy)
+add_subdirectory(BuildQuickAppWithCustomModule)
+add_subdirectory(BuildQuickAppWithSampleTranslations)
