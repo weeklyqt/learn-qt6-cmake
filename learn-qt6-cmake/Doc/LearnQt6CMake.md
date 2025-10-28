@@ -1,4 +1,4 @@
-# learn-qt6-cmake
+# Learn Qt6 CMake
 
 1. Qt6 CMake：QCoreApplication 控制台项目搭建
 2. Qt6 CMake：QWidgets 窗口程序搭建
