@@ -90,7 +90,10 @@ int main(int argc, char *argv[])
 }
 ```
 
+这里需要注意，Qt加载QML的曾经是直接使用`engine.load(QUrl(QStringLiteral("qrc:/Main.qml")))`，但是从Qt6开始，QML引擎默认导入的路径之一是`qrc:/qt/qml/`，所以这里需要使用`engine.loadFromModule("BuildQuickApp", "Main")`来加载QML文件。
+
+另外一种方式还支持QQuickView，但是这种方式不推荐使用，因为QQuickView已经过时了。
+
 # 参考材料
 https://doc.qt.io/qt-6/qtqml-tooling.html
-
 https://doc.qt.io/qt-6/cmake-build-qml-application.html

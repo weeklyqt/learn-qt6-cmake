@@ -14,7 +14,7 @@ Qt 项目中的字符串翻译是以.ts 文件编码的。这些.ts 文件被编
 `-- mainwindow.ui
 ```
 ts 文件是通过 CMakeLists.txt 配置后自动生成的，我们暂时不用关心。
-![translateExample](screenshot/mainwindow.png)
+![translateExample](../BuildWidgetAppWithTranslations/screenshot/mainwindow.png)
 
 这个项目演示了应用的中英文切换支持，在菜单栏里提供了语言选项中文和英文。更新语言选项，应用UI会更新文本显示。
 源码里默认我们默认设置的字符串就是英文，所以仅需要打开BuildWidgetAppWithTranslations_zh_CN.ts 将英文字符串翻译为中文即可。cmake 同样提供了自动发布 ts文件为 qm 文件的功能。我们只需要在运行项目的时候勾选  xxx_lrelease 编译目标即可完成 qm 文件更新。

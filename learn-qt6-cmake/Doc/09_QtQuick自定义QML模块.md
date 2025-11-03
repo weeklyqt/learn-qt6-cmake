@@ -105,10 +105,16 @@ target_link_libraries(CControls PRIVATE Qt6::Gui Qt6::Quick)
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
+
     QQmlApplicationEngine engine;
-    
-    engine.load(QUrl(QStringLiteral("qrc:/qt/qml/BuildQuickAppWithCustomModule/Main.qml")));
-    
+    QObject::connect(
+        &engine,
+        &QQmlApplicationEngine::objectCreationFailed,
+        &app,
+        []() { QCoreApplication::exit(-1); },
+        Qt::QueuedConnection);
+    engine.loadFromModule("BuildQuickAppWithCustomModule", "Main");
+
     return app.exec();
 }
 ```
@@ -152,29 +158,6 @@ set(QT_QML_IMPORT_PATH
 ```
 这个设置确保Qt Creator和运行时都能找到自定义QML模块。
 
-## 部署配置
-为了正确部署应用程序，需要添加以下配置：
-
-```cmake
-# 设置安装目录
-set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/output)
-include(GNUInstallDirs)
-
-# 配置安装规则
-install(TARGETS appBuildQuickAppWithCustomModule
-    BUNDLE DESTINATION .
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-)
-
-# 生成部署脚本
-qt_generate_deploy_qml_app_script(
-    TARGET appBuildQuickAppWithCustomModule
-    OUTPUT_SCRIPT deploy_script
-)
-install(SCRIPT ${deploy_script})
-```
-
 ## 注意事项
 1. 确保QML_IMPORT_PATH正确设置，否则Qt Creator可能无法识别自定义模块
 2. C++类需要正确注册到QML系统中才能在QML中使用
@@ -183,6 +166,5 @@ install(SCRIPT ${deploy_script})
 5. 部署时需要确保所有QML模块都被正确打包
 
 ## 参考文献
-- https://doc.qt.io/qt-6/cmake-qt6-qml-module.html
 - https://doc.qt.io/qt-6/qtqml-modules-qmldir.html
 - https://doc.qt.io/qt-6/qtqml-modules-cppplugins.html

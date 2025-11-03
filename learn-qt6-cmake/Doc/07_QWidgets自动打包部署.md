@@ -1,6 +1,6 @@
 # Qt6 CMake：QWidgets 自动打包部署
 
-本节通过一个简单的 C++ Qt 项目示例展示如何部署 Qt Widgets 应用程序。我们将详细介绍如何使用CMake的部署功能，确保应用程序能在其他机器上正常运行。
+本节通过一个简单的 C++ Qt 项目示例展示如何部署 Qt Widgets 应用程序。我们将详细介绍如何使用CMake的部署功能。
 
 ## 工程结构
 项目的基本结构如下：
@@ -86,12 +86,13 @@ cmake --install . --prefix "./install"  # 指定安装目录为build/install
 cmake --install . --prefix "./BuildWidgetAppAndDeploy.app"
 ```
 
-也可以在Qt Creator的项目页面选中部署目标，再次运行将会自动部署。
+也可以在Qt Creator的项目页面选中部署目标install，再次运行将会自动部署。
 
 ## 部署后的目录结构
 部署后的目录结构因平台而异：
 
 ### Windows
+参考Windows平台效果
 ```
 install/
 ├── bin/
@@ -101,25 +102,6 @@ install/
 │   ├── Qt6Widgets.dll
 │   └── platforms/
 └── plugins/
-```
-
-### macOS
-```
-BuildWidgetAppAndDeploy.app/
-├── Contents/
-│   ├── Frameworks/
-│   ├── MacOS/
-│   │   └── BuildWidgetAppAndDeploy
-│   ├── PlugIns/
-│   └── Info.plist
-```
-
-### Linux
-```
-usr/local/
-├── bin/
-│   └── BuildWidgetAppAndDeploy
-└── lib/
 ```
 
 ## 处理第三方依赖
